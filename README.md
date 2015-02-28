@@ -1,1 +1,1 @@
-[![]](http://www.quickmeme.com/img/27/27845deeb8f6d1e8a46f1ccbf3c43464c9cf26a540df6ad48f72834e611f48b1.jpg)
+[![](http://www.quickmeme.com/img/27/27845deeb8f6d1e8a46f1ccbf3c43464c9cf26a540df6ad48f72834e611f48b1.jpg)]

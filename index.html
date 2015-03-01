@@ -5,12 +5,23 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>It's 5 O'clock Somewhere</title>
+        <!-- REQUIRED CSS -->
+        <link rel="stylesheet" href="/css/styles.css">
+        <!-- REQUIRED JS -->
+        <script src="https://www.google.com/jsapi"></script>
         <script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
-        
-        <script src="timezones.js"></script>
+        <script src="/js/lib/moment.js"></script>
+        <script src="/js/lib/moment-timezone-data.js"></script>
+        <script src="/js/lib/moment-timezone.js"></script>
+            
         <script src="/js/main.js"></script>
     </head>
     <body>
-      	It's 5 O'Clock In:
+        <div id="wrapper">
+            <div class="location">
+            </div>
+            <div class="time">
+            </div>
+        </div>
     </body>
 </html>

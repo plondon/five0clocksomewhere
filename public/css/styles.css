@@ -1,0 +1,43 @@
+body, html {
+	height: 100%;
+	position: relative;
+}
+
+body {
+	-webkit-transition: opacity 0.5s 1s;
+	-o-transition: opacity 0.5s 1s;
+	transition: opacity 0.5s 1s;
+	opacity: 0;
+	margin: 0;
+}
+
+body.active {
+	opacity: 1;
+}
+
+#wrapper {
+	background-position: center center;
+	background-size: cover;
+	position: relative;
+	height: 100%;
+}
+
+.location {
+	position: absolute;
+	color: white;
+	left: 20px;
+	top: 20px;
+}
+
+.time {
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	position: absolute;
+	text-align: center;
+	font-size: 54px;
+	color: white;
+	width: 100%;
+	top: 50%;
+}

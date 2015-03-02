@@ -10,7 +10,7 @@ FIVE0CLOCK = {
 		this.date = this.hours - this.hour + this.offsetGMT;
 
 		this.results = TZ[this.date];
-		this.CN = this.results.splice(0,1)[0];
+		this.CN = this.results.splice(0,2)[0];
 		this.prettyCN = this.CN.split('/')[1].replace('_', '');
 
 		this.$location = $('.location');
@@ -37,11 +37,12 @@ FIVE0CLOCK = {
 		this.imageSearch.setSearchCompleteCallback(this, this.setImage, null);
 	},
 	setTime: function() {
-		var time = moment.tz(this.CN);
-		    time = moment(time).format('h:mm:ss a');
+		this.time = moment.tz(this.CN);
+		this.time = moment(this.time).format('h:mm:ss a');
 
+		this.reset();
 		this.$location.text(this.prettyCN);
-		this.$time.text(time);
+		this.$time.text(this.time);
 	},
 	getImage: function() {
 		this.imageSearch.execute(this.prettyCN);
@@ -54,9 +55,15 @@ FIVE0CLOCK = {
 
 		var self = this;
 		$img.load(function() {
-			setTimeout(function() {self.activate(); }, 2000);
+			setTimeout(function() {self.activate(); }, 3000);
 			$('#wrapper').css({ 'background-image': 'url(' + url + ')'  });
 		});
+	},
+	reset: function() {
+		var hour = parseInt(this.time[0]);
+		if ( hour > 5 ) {
+			FIVE0CLOCK.init();
+		}
 	},
 	loading: function() {
 		$('body').addClass('loading');
@@ -69,6 +76,6 @@ FIVE0CLOCK = {
 
 $(document).ready(function() {
 	$('body').imagesLoaded(function() {
-		FIVE0CLOCK.init().loading();
+		FIVE0CLOCK.init();
 	});
 });

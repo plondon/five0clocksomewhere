@@ -56,7 +56,7 @@ FIVE0CLOCK = {
 		var self = this;
 		$img.load(function() {
 			setTimeout(function() {self.activate(); }, 1000);
-			$('#wrapper').css({ 'background-image': 'url(' + url + ')'  });
+			$('#wrapper').css({ 'background-image': 'url("' + url + '")'  });
 		});
 	},
 	reset: function() {

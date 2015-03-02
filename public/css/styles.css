@@ -4,11 +4,18 @@ body, html {
 }
 
 body {
-	-webkit-transition: opacity 0.5s 1s;
-	-o-transition: opacity 0.5s 1s;
-	transition: opacity 0.5s 1s;
+	-webkit-transition: opacity 0.5s;
+	-o-transition: opacity 0.5s;
+	transition: opacity 0.5s;
 	opacity: 0;
 	margin: 0;
+}
+
+body.loading {
+	background-image: url('http://www.bethanysaginaw.com/home/180008356/180008356/Images/creation_for_kids.gif');
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: initial;
 }
 
 body.active {

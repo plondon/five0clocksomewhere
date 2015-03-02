@@ -10,7 +10,7 @@ FIVE0CLOCK = {
 		this.date = this.hours - this.hour + this.offsetGMT;
 
 		this.results = TZ[this.date];
-		this.CN = this.results.splice(0,3)[0];
+		this.CN = this.results.splice(1,1)[0];
 		this.prettyCN = this.CN.split('/')[1].replace('_', '');
 
 		this.$location = $('.location');

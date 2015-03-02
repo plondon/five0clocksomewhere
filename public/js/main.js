@@ -10,7 +10,7 @@ FIVE0CLOCK = {
 		this.date = this.hours - this.hour + this.offsetGMT;
 
 		this.results = TZ[this.date];
-		this.CN = this.results.splice(1,1)[0];
+		this.CN = this.results.splice(2,1)[0];
 		this.prettyCN = this.CN.split('/')[1].replace('_', '');
 
 		this.$location = $('.location');
@@ -55,7 +55,7 @@ FIVE0CLOCK = {
 
 		var self = this;
 		$img.load(function() {
-			setTimeout(function() {self.activate(); }, 3000);
+			setTimeout(function() {self.activate(); }, 1000);
 			$('#wrapper').css({ 'background-image': 'url(' + url + ')'  });
 		});
 	},

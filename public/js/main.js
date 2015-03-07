@@ -4,20 +4,22 @@ var FIVE0CLOCK = FIVE0CLOCK || {};
 FIVE0CLOCK = {
 	init: function() {
 		this.hours = 24;
-		this.offsetGMT = 5;
+		this.offset = 5;
 		this.now = new Date();
-		this.hour = (this.now.getHours()) % 24;
-		this.date = this.hours - this.hour + this.offsetGMT;
+		this.hour = this.now.getHours();
+		this.offsetGMT = this.now.getTimezoneOffset()/60;
+		this.date = this.hour + this.offset + this.offsetGMT - 1;
 
 		this.results = TZ[this.date];
-		this.CN = this.results.splice(2,1)[0];
+
+		this.CN = this.results[Math.floor(Math.random()*this.results.length)];
 		this.prettyCN = this.CN.split('/')[1].replace('_', '');
 
 		this.$location = $('.location');
 		this.$time = $('.time');
 
-		this.googleImage();
-		this.getImage();
+		// this.googleImage();
+		// this.getImage();
 		this.setTime();
 
 		setInterval( this.setTime.bind(this), 1000);
@@ -41,13 +43,14 @@ FIVE0CLOCK = {
 		this.time = moment(this.time).format('h:mm:ss a');
 
 		this.reset();
-		this.$location.text(this.prettyCN);
 		this.$time.text(this.time);
+		this.$location.text(this.prettyCN);
 	},
 	getImage: function() {
 		this.imageSearch.execute(this.prettyCN);
 	},
 	setImage: function() {
+		if ( !this.imageSearch.results.length ) { return; }
 		var url = this.imageSearch.results[0].url;
 		var $img = $("<img>");
 		

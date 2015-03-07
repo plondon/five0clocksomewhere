@@ -13,7 +13,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/search/:somewhere', function(req, response) {
-  YaBossClient.searchImages(req.param("somewhere"), {format: 'json', count: 1, dimensions: 'wallpaper'}, function(err,dataFound,res){
+  YaBossClient.searchImages(req.param("somewhere"), {format: 'json', count: 1, dimensions: 'widewallpaper'}, function(err,dataFound,res){
   	response.send(dataFound);
   });
 });

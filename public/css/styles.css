@@ -4,11 +4,14 @@ body, html {
 }
 
 body {
+	margin: 0;
+}
+
+body #wrapper {
 	-webkit-transition: opacity 0.5s;
 	-o-transition: opacity 0.5s;
 	transition: opacity 0.5s;
 	opacity: 0;
-	margin: 0;
 }
 
 body.loading {
@@ -18,7 +21,63 @@ body.loading {
 	background-size: initial;
 }
 
-body.active {
+body.finish-loading .status span{
+	opacity: .3;
+}
+
+body .status {
+	-webkit-transform: translate3d(-50%, -50%, 0);
+	transform: translate3d(-50%, -50%, 0);
+	position: absolute;
+	left: 50%;
+	top: 25%;
+}
+
+body .status span {
+	opacity: 0;
+	width: 15px;
+	float: left;
+	height: 60px;
+	display: block;
+	margin-left: 25px;
+	margin-right: 25px;
+	position: relative;
+	border-radius: 20px;
+	background-color: blue;	
+}
+
+body .status span:nth-child(1) {
+	-webkit-transition: opacity 0.5s 0s;
+	-o-transition: opacity 0.5s 0s;
+	transition: opacity 0.5s 0s;
+	-webkit-transform: rotate(-20deg);
+	transform: rotate(-20deg);
+	top: 20px;
+}
+body .status span:nth-child(2) {
+	-webkit-transition: opacity 0.5s 0.5s;
+	-o-transition: opacity 0.5s 0.5s;
+	transition: opacity 0.5s 0.5s;
+	-webkit-transform: rotate(-10deg);
+	transform: rotate(-10deg);
+}	
+body .status span:nth-child(3) {
+	-webkit-transition: opacity 0.5s 1s;
+	-o-transition: opacity 0.5s 1s;
+	transition: opacity 0.5s 1s;
+	-webkit-transform: rotate(10deg);
+	transform: rotate(10deg);
+}
+body .status span:nth-child(4) {
+	-webkit-transition: opacity 0.5s 1.5s;
+	-o-transition: opacity 0.5s 1.5s;
+	transition: opacity 0.5s 1.5s;
+	-webkit-transform: rotate(20deg);
+	transform: rotate(20deg);
+	top: 20px;
+}
+
+body.active #wrapper {
 	opacity: 1;
 }
 
@@ -47,4 +106,10 @@ body.active {
 	color: white;
 	width: 100%;
 	top: 50%;
+}
+
+@media (max-width: 600px) {
+	body .status {
+		display: none;
+	}
 }

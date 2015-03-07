@@ -1,6 +1,14 @@
 google.load('search', '1');
 var FIVE0CLOCK = FIVE0CLOCK || {};
 
+/*
+TODO
+change body to wrapper add parallax
+change font
+add information (from wikipedia?)
+
+*/
+
 FIVE0CLOCK = {
 	init: function() {
 		this.hours = 24;
@@ -38,14 +46,6 @@ FIVE0CLOCK = {
 
 		this.imageSearch.setSearchCompleteCallback(this, this.setImage, null);
 	},
-	setTime: function() {
-		this.time = moment.tz(this.CN);
-		this.time = moment(this.time).format('h:mm:ss a');
-
-		this.reset();
-		this.$time.text(this.time);
-		this.$location.text(this.prettyCN);
-	},
 	getImage: function() {
 		this.imageSearch.execute(this.prettyCN);
 	},
@@ -58,9 +58,18 @@ FIVE0CLOCK = {
 
 		var self = this;
 		$img.load(function() {
-			setTimeout(function() {self.activate(); }, 1000);
+			setTimeout(function() {self.finishLoad(); }, 0);
+			setTimeout(function() {self.activate(); }, 2000);
 			$('#wrapper').css({ 'background-image': 'url("' + url + '")'  });
 		});
+	},
+	setTime: function() {
+		this.time = moment.tz(this.CN);
+		this.time = moment(this.time).format('h:mm:ss a');
+
+		this.reset();
+		this.$time.text(this.time);
+		this.$location.text(this.prettyCN);
 	},
 	reset: function() {
 		var hour = parseInt(this.time[0]);
@@ -70,6 +79,9 @@ FIVE0CLOCK = {
 	},
 	loading: function() {
 		$('body').addClass('loading');
+	},
+	finishLoad: function() {
+		$('body').addClass('finish-load');
 	},
 	activate: function() {
 		$('body').removeClass('loading');

@@ -18,8 +18,8 @@ FIVE0CLOCK = {
 		this.$location = $('.location');
 		this.$time = $('.time');
 
-		// this.googleImage();
-		// this.getImage();
+		this.googleImage();
+		this.getImage();
 		this.setTime();
 
 		setInterval( this.setTime.bind(this), 1000);

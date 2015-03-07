@@ -9,7 +9,8 @@
   "dependencies": {
     "cool-ascii-faces": "~1.3.x",
     "express": "~4.9.x",
-    "moment-timezone": "^0.3.0"
+    "moment-timezone": "^0.3.0",
+    "yaboss": "0.1.2 "
   },
   "engines": {
     "node": "0.10.x"

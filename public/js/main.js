@@ -11,12 +11,12 @@ add information (from wikipedia?)
 
 FIVE0CLOCK = {
 	init: function() {
-		this.hours = 24;
+		this.hours = 12;
 		this.offset = 5;
 		this.now = new Date();
 		this.hour = this.now.getHours();
 		this.offsetGMT = this.now.getTimezoneOffset()/60;
-		this.date = this.hour + this.offset + this.offsetGMT - 1;
+		this.date = this.hour % this.hour + 11 + this.offsetGMT;
 
 		this.results = TZ[this.date];
 
@@ -81,7 +81,7 @@ FIVE0CLOCK = {
 		$('body').addClass('loading');
 	},
 	finishLoad: function() {
-		$('body').addClass('finish-load');
+		$('body').addClass('finish-loading');
 	},
 	activate: function() {
 		$('body').removeClass('loading');

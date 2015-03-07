@@ -16,7 +16,7 @@ FIVE0CLOCK = {
 		this.hour = this.now.getHours();
 		this.offsetGMT = this.now.getTimezoneOffset()/60;
 
-		this.date = this.hour + this.offset - this.offsetGMT;
+		this.date = this.hour + this.offset - this.offsetGMT - 3;
 
 		this.results = TZ[this.date];
 

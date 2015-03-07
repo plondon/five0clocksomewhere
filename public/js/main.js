@@ -1,4 +1,3 @@
-google.load('search', '1');
 var FIVE0CLOCK = FIVE0CLOCK || {};
 
 /*
@@ -16,7 +15,8 @@ FIVE0CLOCK = {
 		this.now = new Date();
 		this.hour = this.now.getHours();
 		this.offsetGMT = this.now.getTimezoneOffset()/60;
-		this.date = this.hour % this.hour + 11 + this.offsetGMT;
+
+		this.date = this.hour + this.offset - this.offsetGMT;
 
 		this.results = TZ[this.date];
 
@@ -26,32 +26,22 @@ FIVE0CLOCK = {
 		this.$location = $('.location');
 		this.$time = $('.time');
 
-		this.googleImage();
 		this.getImage();
 		this.setTime();
 
 		setInterval( this.setTime.bind(this), 1000);
 		return this;
 	},
-	googleImage: function() {
-		this.imageSearch = new google.search.ImageSearch();
-
-		// ADVANCED IMAGE SEARCH
-		this.imageSearch.setRestriction(
-			google.search.ImageSearch.RESTRICT_IMAGESIZE,
-			google.search.ImageSearch.IMAGESIZE_EXTRA_LARGE);
-		this.imageSearch.setRestriction(
-			google.search.ImageSearch.RESTRICT_FILETYPE,
-			google.search.ImageSearch.FILETYPE_JPG);
-
-		this.imageSearch.setSearchCompleteCallback(this, this.setImage, null);
-	},
 	getImage: function() {
-		this.imageSearch.execute(this.prettyCN);
+		var req = $.get('/search/' + this.prettyCN);
+
+		req.done(function (d) {
+			FIVE0CLOCK.images = JSON.parse(d).bossresponse.images;
+			FIVE0CLOCK.setImage();
+		});
 	},
 	setImage: function() {
-		if ( !this.imageSearch.results.length ) { return; }
-		var url = this.imageSearch.results[0].url;
+		var url = this.images.results[0].clickurl;
 		var $img = $("<img>");
 		
 		$img.attr('src', url);
@@ -73,9 +63,9 @@ FIVE0CLOCK = {
 	},
 	reset: function() {
 		var hour = parseInt(this.time[0]);
-		if ( hour > 5 ) {
-			FIVE0CLOCK.init();
-		}
+		// if ( hour > 5 ) {
+		// 	FIVE0CLOCK.init();
+		// }
 	},
 	loading: function() {
 		$('body').addClass('loading');

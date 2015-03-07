@@ -2,10 +2,12 @@ var FIVE0CLOCK = FIVE0CLOCK || {};
 
 /*
 TODO
-change body to wrapper add parallax
-change font
-add information (from wikipedia?)
+FIGURE OUT TIME ISSUE
+GET NICER IMAGES
 
+add parallax
+add place info
+add google maps
 */
 
 FIVE0CLOCK = {
@@ -16,7 +18,7 @@ FIVE0CLOCK = {
 		this.hour = this.now.getHours();
 		this.offsetGMT = this.now.getTimezoneOffset()/60;
 
-		this.date = this.hour + this.offset - this.offsetGMT - 3;
+		this.date = this.hour + this.offset - this.offsetGMT - 5;
 
 		this.results = TZ[this.date];
 

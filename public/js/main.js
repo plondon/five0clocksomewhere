@@ -12,9 +12,9 @@ add google maps
 
 FIVE0CLOCK = {
 	init: function() {
-		this.hours = 12;
 		this.now = new Date();
 		this.hour = this.now.getHours();
+		this.hours = this.hour < 12 ? 0 : 12;
 		this.date = 17 - this.hour + this.hours + 1;
 
 		this.results = TZ[this.date];

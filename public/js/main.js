@@ -2,12 +2,11 @@ var FIVE0CLOCK = FIVE0CLOCK || {};
 
 /*
 TODO
-FIGURE OUT TIME ISSUE
-GET NICER IMAGES
-
 add parallax
 add place info
 add google maps
+add reload button
+add session and pop off previous places user has been
 */
 
 FIVE0CLOCK = {

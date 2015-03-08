@@ -13,12 +13,9 @@ add google maps
 FIVE0CLOCK = {
 	init: function() {
 		this.hours = 12;
-		this.offset = 5;
 		this.now = new Date();
 		this.hour = this.now.getHours();
-		this.offsetGMT = this.now.getTimezoneOffset()/60;
-
-		this.date = this.hour + this.offset - this.offsetGMT - 5;
+		this.date = 17 - this.hour + this.hours + 1;
 
 		this.results = TZ[this.date];
 
@@ -38,17 +35,25 @@ FIVE0CLOCK = {
 		var req = $.get('/search/' + this.prettyCN);
 
 		req.done(function (d) {
-			FIVE0CLOCK.images = JSON.parse(d).bossresponse.images;
+			FIVE0CLOCK.images = JSON.parse(d).bossresponse.images.results;
+
+			FIVE0CLOCK.images.sort(function(a, b) {
+				return parseInt(a.size) - parseInt(b.size);
+			});
+
 			FIVE0CLOCK.setImage();
 		});
 	},
 	setImage: function() {
-		var url = this.images.results[0].clickurl;
+		var url = this.images.pop().clickurl;
 		var $img = $("<img>");
 		
 		$img.attr('src', url);
 
 		var self = this;
+		$img.error(function() {
+			self.init();
+		});
 		$img.load(function() {
 			setTimeout(function() {self.finishLoad(); }, 0);
 			setTimeout(function() {self.activate(); }, 2000);
